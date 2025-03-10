@@ -77,7 +77,7 @@ export default function App() {
 
                 
                 <WithLabel labelId="postal-label">
-                  Country
+                  Postal Code
                   <NumericInputField className="contact-field text-secondary" required placeholder="00270" />
                 </WithLabel>
               </div>
