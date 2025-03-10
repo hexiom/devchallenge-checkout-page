@@ -1,95 +1,107 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+/* eslint-disable @next/next/no-img-element */
+/* The NextJS <Image> element sucks, so I am using <img> element */
+/* NextJS, please fix your stupid Image component */
 
-export default function Home() {
+import CheckoutItem from "./components/CheckoutItem";
+import WithLabel from "./components/WithLabel";
+import InputField from "./components/InputField";
+import CountryDropdown from "./components/CountryDropdown";
+import NumericInputField from "./components/NumericInputField";
+import Stepper from "./components/Stepper";
+import Step from "./components/Step";
+
+export default function App() { 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+    <header className="checkout-header">
+      <img className="checkout-img" srcSet="/background-image.png 960w, /background-image@2x.png 1280w" sizes="(max-width: 620px) 960px, 1280px" src="/background-image.png" alt="" />
+    </header>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <main className="checkout-main">
+      <div className="title-wrapper padding-y-largest">
+        <h1 className="bold text-large">Checkout</h1>
+        <span className="badge">3 Items</span>
+      </div>
+
+      <div className="checkout-modal grid-half">
+        <div className="items-panel padding-x-larger">
+          <div className="items">
+            <CheckoutItem img={{qualityMid: "/Gold.png", qualityHigh: "/Gold@2x.png"}} name="iPhone 12 Pro" price={999.00} color="Golden" quantity={1} />
+            <CheckoutItem img={{qualityMid: "/Apple-watch.png", qualityHigh: "/Apple-watch@2x.png"}} name="Apple Watch" price={399.00} color="Blue" quantity={1} />
+            <CheckoutItem img={{qualityMid: "/iMac.png", qualityHigh: "/iMac@2x.png"}} name="iMac" price={1199.00} color="Green" quantity={1} />
+          </div>
+
+          <div className="inline-flex padding-top-medium full-width gap-small">
+            <InputField type="text" placeholder="Enter coupon code" />
+            <button className="btn">Apply Coupon</button>
+          </div>
+
+          <div className="flex-column gap-medium text-close padding-y-large">
+            <div className="flex-between semi-bold text-secondary">
+              <p>Sub total</p>
+              <p>$2597.00</p>
+            </div>
+
+            <div className="text-secondary semi-bold flex-between">
+              <p>Tax</p>
+              <p>$623.28</p>
+            </div>
+
+            <div className="flex-between bold">
+              <p>Total</p>
+              <p>$3220.28</p>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        <div className="contact-side padding-x-larger">
+          <div>
+            <p className="bold padding-bottom-large">Contact Information</p>
+
+            <div className="flex-column gap-large">
+              <WithLabel labelId="name-label">
+                First & Last name
+                <InputField className="contact-field" type="text" aria-labelledby="" placeholder="Enter first & last name" />
+              </WithLabel>
+              
+              <WithLabel labelId="email-label">
+                Email address
+                <InputField className="contact-field" type="text" placeholder="Enter email address" />
+              </WithLabel>
+
+              <div className="grid-half gap-medium">
+                <WithLabel labelId="country-label">
+                  Country
+                  <CountryDropdown className="contact-field" />
+                </WithLabel>
+
+                
+                <WithLabel labelId="postal-label">
+                  Country
+                  <NumericInputField className="contact-field text-secondary" placeholder="00270" />
+                </WithLabel>
+              </div>
+
+              <button className="btn btn-large">Continue</button>
+
+              <Stepper>
+                <Step completed>
+                  Shipping information
+                </Step>
+
+                <Step>
+                  Personal information
+                </Step>
+                
+                <Step>
+                  Banking details
+                </Step>
+              </Stepper>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    </>
   );
 }
