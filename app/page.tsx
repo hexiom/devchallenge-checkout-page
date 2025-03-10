@@ -14,7 +14,7 @@ export default function App() {
   return (
     <>
     <header className="checkout-header">
-      <img className="checkout-img" srcSet="/background-image.png 960w, /background-image@2x.png 1280w" sizes="(max-width: 620px) 960px, 1280px" src="/background-image.png" alt="" />
+      <img className="checkout-img" srcSet="/background-image.png 1x, /background-image@2x.png 2x" src="/background-image.png" alt="" />
     </header>
 
     <main className="checkout-main">
