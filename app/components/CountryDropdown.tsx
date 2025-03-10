@@ -6,7 +6,7 @@ const CountryDropdown = forwardRef<HTMLSelectElement, SelectHTMLAttributes<HTMLS
   
   return (
     <div className='select-option'>
-      <select {...props} ref={ref} className={className.trim()} >
+      <select aria-label='Dropdown' {...props} ref={ref} className={className.trim()} >
         {countries.map((country) => (
           <option key={country} value={country}>{country}</option>
         ))}

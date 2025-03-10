@@ -61,24 +61,24 @@ export default function App() {
             <div className="flex-column gap-large">
               <WithLabel labelId="name-label">
                 First & Last name
-                <InputField className="contact-field" type="text" aria-labelledby="" placeholder="Enter first & last name" />
+                <InputField className="contact-field" required type="text" placeholder="Enter first & last name" />
               </WithLabel>
               
               <WithLabel labelId="email-label">
                 Email address
-                <InputField className="contact-field" type="text" placeholder="Enter email address" />
+                <InputField className="contact-field" required type="email" inputMode="email" placeholder="Enter email address" />
               </WithLabel>
 
               <div className="grid-half gap-medium">
                 <WithLabel labelId="country-label">
                   Country
-                  <CountryDropdown className="contact-field" />
+                  <CountryDropdown required className="contact-field" />
                 </WithLabel>
 
                 
                 <WithLabel labelId="postal-label">
                   Country
-                  <NumericInputField className="contact-field text-secondary" placeholder="00270" />
+                  <NumericInputField className="contact-field text-secondary" required placeholder="00270" />
                 </WithLabel>
               </div>
 
